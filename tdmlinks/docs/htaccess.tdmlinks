@@ -1,0 +1,37 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^directory/(.*?)/images/(.*?)/(.*?)$ modules/TDMLinks/images/$2/$3
+RewriteRule ^directory/(.*?)/images/(.*?)$ modules/TDMLinks/images/$2
+RewriteRule ^directory/(.*?)/([0-9]+).html$ modules/TDMLinks/singlefile.php?lid=$2
+RewriteRule ^directory/(.*?)/view.tag.php$ modules/TDMLinks/view.tag.php$2
+RewriteRule ^directory/(.*?)/list.tag.php$ modules/TDMLinks/list.tag.php$2
+RewriteRule ^directory/(.*?)/visit.php$ modules/TDMLinks/visit.php$2
+RewriteRule ^directory/(.*?)/index.php$ modules/TDMLinks/index.php$2
+RewriteRule ^directory/(.*?)/viewcat.php$ modules/TDMLinks/viewcat.php$2
+RewriteRule ^directory/(.*?)/brokenfile.php$ modules/TDMLinks/brokenfile.php$2
+RewriteRule ^directory/(.*?)/modfile.php$ modules/TDMLinks/modfile.php$2
+RewriteRule ^directory/(.*?)/ratefile.php$ modules/TDMLinks/ratefile.php$2
+RewriteRule ^directory/(.*?)/comment_(.*?).php$ modules/TDMLinks/comment_$2.php
+RewriteRule ^directory/(.*?)/notification_(.*?).php$ modules/TDMLinks/notification_$2.php
+RewriteRule ^directory/broken,([a-z]+),([0-9]+).html$ modules/TDMLinks/brokenfile.php?op=$1&lid=$2
+RewriteRule ^directory/mod,([a-z]+),([0-9]+).html$ modules/TDMLinks/modfile.php?op=$1&lid=$2
+RewriteRule ^directory/rate,([a-z]+),([0-9]+).html$ modules/TDMLinks/ratefile.php?op=$1&lid=$2
+RewriteRule ^directory/rss,([0-9]+).rss$ modules/TDMLinks/rss.php?cid=$1
+RewriteRule ^directory/cat,([0-9]+).html$ modules/TDMLinks/viewcat.php?cid=$1
+RewriteRule ^directory/submit,([a-z]+).html$ modules/TDMLinks/submit.php?op=$1
+RewriteRule ^directory/view.tag.php$ modules/TDMLinks/view.tag.php
+RewriteRule ^directory/list.tag.php$ modules/TDMLinks/list.tag.php
+RewriteRule ^directory/singlefile.php$ modules/TDMLinks/singlefile.php
+RewriteRule ^directory/visit.php$ modules/TDMLinks/visit.php
+RewriteRule ^directory/ratefile.php$ modules/TDMLinks/ratefile.php
+RewriteRule ^directory/modfile.php$ modules/TDMLinks/modfile.php
+RewriteRule ^directory/brokenfile.php$ modules/TDMLinks/brokenfile.php
+RewriteRule ^directory/search.html$ modules/TDMLinks/search.php
+RewriteRule ^directory/search.php$ modules/TDMLinks/search.php
+RewriteRule ^directory/submit.html$ modules/TDMLinks/submit.php
+RewriteRule ^directory/notification_(.*?).php$ modules/TDMLinks/notification_$1.php
+RewriteRule ^directory/index.html$ modules/TDMLinks/index.php
+RewriteRule ^directory/index.php$ modules/TDMLinks/index.php
+RewriteRule ^directory/$ modules/TDMLinks/index.php
