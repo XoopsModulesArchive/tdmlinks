@@ -17,7 +17,7 @@
 include 'admin_header.php';
 xoops_cp_header();
 // compte le nombre de catégories
-$criteria = new CriteriaCompo();
+$criteria      = new CriteriaCompo();
 $nb_categories = $linkscat_Handler->getCount($criteria);
 // compte le nombre de téléchargements
 $criteria = new CriteriaCompo();
@@ -32,10 +32,16 @@ $nb_broken = $linksbroken_Handler->getCount();
 // compte le nombre de demande de modifications
 $nb_modified = $linksmod_Handler->getCount();
 // dossier dans uploads
-$folder = array(XOOPS_ROOT_PATH . '/uploads/TDMLinks/', XOOPS_ROOT_PATH . '/uploads/TDMLinks/links', XOOPS_ROOT_PATH . '/uploads/TDMLinks/images',
-               XOOPS_ROOT_PATH . '/uploads/TDMLinks/images/cats', XOOPS_ROOT_PATH . '/uploads/TDMLinks/images/field', XOOPS_ROOT_PATH . '/uploads/TDMLinks/images/shots');
+$folder = array(
+    XOOPS_ROOT_PATH . '/uploads/tdmlinks/',
+    XOOPS_ROOT_PATH . '/uploads/tdmlinks/links',
+    XOOPS_ROOT_PATH . '/uploads/tdmlinks/images',
+    XOOPS_ROOT_PATH . '/uploads/tdmlinks/images/cats',
+    XOOPS_ROOT_PATH . '/uploads/tdmlinks/images/field',
+    XOOPS_ROOT_PATH . '/uploads/tdmlinks/images/shots'
+);
 
-if (TDMLinks_checkModuleAdmin()){
+if (TDMLinks_checkModuleAdmin()) {
     $index_admin = new ModuleAdmin();
     $index_admin->addInfoBox(_MI_TDMLINKS_ADMENU2);
     $index_admin->addInfoBox(_MI_TDMLINKS_ADMENU3);
@@ -43,22 +49,22 @@ if (TDMLinks_checkModuleAdmin()){
     $index_admin->addInfoBox(_MI_TDMLINKS_ADMENU5);
     $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU2, _AM_TDMLINKS_INDEX_CATEGORIES, $nb_categories);
     $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU3, _AM_TDMLINKS_INDEX_LINKS, $nb_links);
-    if ($nb_links_waiting == 0){
+    if ($nb_links_waiting === 0) {
         $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU3, _AM_TDMLINKS_INDEX_LINKSWAITING, $nb_links_waiting, 'Green');
-    }else{
+    } else {
         $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU3, _AM_TDMLINKS_INDEX_LINKSWAITING, $nb_links_waiting, 'Red');
     }
-    if ($nb_broken == 0){
+    if ($nb_broken === 0) {
         $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU4, _AM_TDMLINKS_INDEX_BROKEN, $nb_broken, 'Green');
-    }else{
+    } else {
         $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU4, _AM_TDMLINKS_INDEX_BROKEN, $nb_broken, 'Red');
     }
-    if ($nb_modified == 0){
+    if ($nb_modified === 0) {
         $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU5, _AM_TDMLINKS_INDEX_MODIFIED, $nb_modified, 'Green');
-    }else{
+    } else {
         $index_admin->addInfoBoxLine(_MI_TDMLINKS_ADMENU5, _AM_TDMLINKS_INDEX_MODIFIED, $nb_modified, 'Red');
     }
-    foreach (array_keys( $folder) as $i) {
+    foreach (array_keys($folder) as $i) {
         $index_admin->addConfigBoxLine($folder[$i], 'folder');
         $index_admin->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
     }
@@ -66,4 +72,3 @@ if (TDMLinks_checkModuleAdmin()){
     echo $index_admin->renderIndex();
 }
 xoops_cp_footer();
-?>

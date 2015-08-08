@@ -1,6 +1,25 @@
 -------------------------------------------------
-Version: 1.62 alpha4
-Date:    2011/11/04
+Version: 1.62 beta 2        Date:    NOT RELEASED
+-------------------------------------------------
+- cosmetic code changes (mamba)
+- English adjustments (mamba)
+
+-------------------------------------------------
+Version: 1.62 Beta 1        Date:    2011/11/09
+-------------------------------------------------
+
+- Fixed bugs (timgno)
+
+-------------------------------------------------
+Version: 1.62 alpha5        Date:    2011/11/08
+-------------------------------------------------
+
+- Solved bugs in Categories & Links (timgno)
+- Deleted superflues champs (timgno)
+- Changed icon addlinks (timgno)
+
+-------------------------------------------------
+Version: 1.62 alpha4        Date:    2011/11/04
 -------------------------------------------------
 
 - Modified admin/import.php file by (timgno)
@@ -11,16 +30,14 @@ Date:    2011/11/04
 - Modified submit.php file by (timgno)
 
 -------------------------------------------------
-Version: 1.62 alpha3
-Date:    2011/08/22
+Version: 1.62 alpha3        Date:    2011/08/22
 -------------------------------------------------
 
 - Modified admin/import.php file by (timgno)
 - Modified admin/links.php file by (timgno)
 
 -------------------------------------------------
-Version: 1.62 alpha2
-Date:    2011/08/20
+Version: 1.62 alpha2        Date:    2011/08/20
 -------------------------------------------------
 
 - Modified all language variables and sql by (timgno)
@@ -28,8 +45,7 @@ Date:    2011/08/20
 - Modified all tdmlinks.php and templates files from fork by (timgno)
 
 -------------------------------------------------
-Version: 1.62 alpha1
-Date:    2011/08/14
+Version: 1.62 alpha1        Date:    2011/08/14
 -------------------------------------------------
 
 - Initial Alpha Cloned From Fork by (timgno)
@@ -37,8 +53,7 @@ Date:    2011/08/14
 - Hack Url-Rewrite by (Wishcraft)
 
 -------------------------------------------------
-Version: 1.62 Not Official TDMDownloads
-Date:    2011/08/14
+Version: 1.62 Not Official TDMDownloads Date: 2011/08/14
 -------------------------------------------------
 
 - Original Release Cloned From Fork Module TDMDownloads by (G. Mage)

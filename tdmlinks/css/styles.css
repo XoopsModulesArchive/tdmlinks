@@ -8,7 +8,7 @@
 }
 
 .tdmlinks-data {
-    border: 0px;
+    border: 0;
     padding: 1px;
     margin: 1px;
 }
@@ -31,7 +31,7 @@
 }
 
 .tdmlinks-body img {
-    border: 0px;
+    border: 0;
     padding: 1px;
     margin: 1px;
     max-height: 120px;
@@ -114,52 +114,52 @@
 }
 
 .tdmlinks-box #date {
-    background: url(../images/icon/date.png) no-repeat left;
+    background: url(../assets/images/icon/date.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #author {
-    background: url(../images/icon/author.png) no-repeat left;
+    background: url(../assets/images/icon/author.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #hits {
-    background: url(../images/icon/hits.png) no-repeat left;
+    background: url(../assets/images/icon/hits.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #rating {
-    background: url(../images/icon/votes.png) no-repeat left;
+    background: url(../assets/images/icon/votes.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #comments {
-    background: url(../images/icon/comments.png) no-repeat left;
+    background: url(../assets/images/icon/comments.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #torate {
-    background: url(../images/icon/torate.png) no-repeat left;
+    background: url(../assets/images/icon/torate.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #tomodify {
-    background: url(../images/icon/tomodify.png) no-repeat left;
+    background: url(../assets/images/icon/tomodify.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #toreport {
-    background: url(../images/icon/toreport.png) no-repeat left;
+    background: url(../assets/images/icon/toreport.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #totell {
-    background: url(../images/icon/totell.png) no-repeat left;
+    background: url(../assets/images/icon/totell.png) no-repeat left;
     padding: 5px 20px;
 }
 
 .tdmlinks-box #link {
-    background: url(../images/icon/link-now.png) no-repeat left;
+    background: url(../assets/images/icon/link.png) no-repeat left;
     padding: 5px 25px;
     line-height: 1.6em;
     font-size: 1.1em;

@@ -17,19 +17,21 @@
 if (!defined("XOOPS_ROOT_PATH")) {
     die("XOOPS root path not defined");
 }
+
 class tdmlinks_modfielddata extends XoopsObject
 {
-// constructor
-    function __construct()
+    // constructor
+    public function __construct()
     {
         $this->XoopsObject();
-        $this->initVar("modiddata",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("fid",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("lid",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("moddata",XOBJ_DTYPE_TXTAREA, null, false);
+        $this->initVar("modiddata", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("fid", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("moddata", XOBJ_DTYPE_TXTAREA, null, false);
         $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
     }
-    function tdmlinks_modfielddata()
+
+    public function tdmlinks_modfielddata()
     {
         $this->__construct();
     }
@@ -37,9 +39,8 @@ class tdmlinks_modfielddata extends XoopsObject
 
 class tdmlinkstdmlinks_modfielddataHandler extends XoopsPersistableObjectHandler
 {
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, "tdmlinks_modfielddata", 'tdmlinks_modfielddata', 'modiddata', 'moddata');
     }
 }
-?>

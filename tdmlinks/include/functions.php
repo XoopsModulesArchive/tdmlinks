@@ -14,7 +14,6 @@
  * @author      Gregory Mage (Aka Mage)
  */
 
- 
 //**********************************************************************************************************************
 // ModuleName_checkModuleAdmin
 //**********************************************************************************************************************
@@ -22,160 +21,171 @@
 //**********************************************************************************************************************
 function TDMLinks_checkModuleAdmin()
 {
-    if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))){
+    if (file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))) {
         include_once $GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php');
+
         return true;
-    }else{
+    } else {
         echo xoops_error("Error: You don't use the Frameworks \"admin module\". Please install this Frameworks");
+
         return false;
     }
 }
 
-function TDMLinks_MygetItemIds($permtype,$dirname)
+function TDMLinks_MygetItemIds($permtype, $dirname)
 {
     global $xoopsUser;
     static $permissions = array();
-    if(is_array($permissions) && array_key_exists($permtype, $permissions)) {
+    if (is_array($permissions) && array_key_exists($permtype, $permissions)) {
         return $permissions[$permtype];
     }
-       $module_handler =& xoops_gethandler('module');
-       $tdmModule =& $module_handler->getByDirname($dirname);
-       $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-       $gperm_handler =& xoops_gethandler('groupperm');
-       $categories = $gperm_handler->getItemIds($permtype, $groups, $tdmModule->getVar('mid'));
+    $module_handler =& xoops_gethandler('module');
+    $tdmModule      =& $module_handler->getByDirname($dirname);
+    $groups         = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
+    $gperm_handler  =& xoops_gethandler('groupperm');
+    $categories     = $gperm_handler->getItemIds($permtype, $groups, $tdmModule->getVar('mid'));
+
     return $categories;
 }
 
 /**
-* retourne le nombre de téléchargements dans le catégories enfants d'une catégorie
-**/
+ * retourne le nombre de tï¿½lï¿½chargements dans le catï¿½gories enfants d'une catï¿½gorie
+ **/
 
-function TDMLinks_NumbersOfEntries($mytree, $categories, $entries,$cid)
+function TDMLinks_NumbersOfEntries($mytree, $categories, $entries, $cid)
 {
-    $count = 0;
+    $count     = 0;
     $child_arr = array();
-    if(in_array($cid, $categories)) {
+    if (in_array($cid, $categories)) {
         $child = $mytree->getAllChild($cid);
         foreach (array_keys($entries) as $i) {
-            if ($entries[$i]->getVar('cid') == $cid){
+            if ($entries[$i]->getVar('cid') == $cid) {
                 $count++;
             }
             foreach (array_keys($child) as $j) {
-                if ($entries[$i]->getVar('cid') == $j){
+                if ($entries[$i]->getVar('cid') == $j) {
                     $count++;
                 }
             }
         }
     }
+
     return $count;
 }
 
 /**
-* retourne une image "nouveau" ou "mise à jour"
-**/
+ * retourne une image "nouveau" ou "mise ï¿½ jour"
+ **/
 
-function TDMLinks_Thumbnail($time, $status) {
+function TDMLinks_Thumbnail($time, $status)
+{
     global $xoopsModuleConfig;
-    $count = 7;
-    $new = '';
-    $startdate = (time()-(86400 * $count));
-    if($xoopsModuleConfig['showupdated'] == 1) {
+    $count     = 7;
+    $new       = '';
+    $startdate = (time() - (86400 * $count));
+    if ($xoopsModuleConfig['showupdated'] == 1) {
         if ($startdate < $time) {
             $language = $GLOBALS['xoopsConfig']['language'];
-            if ( !is_dir( XOOPS_ROOT_PATH . "/modules/TDMLinks/language/" . $language . "/" ) ){
+            if (!is_dir(XOOPS_ROOT_PATH . "/modules/tdmlinks/language/" . $language . "/")) {
                 $language = 'english';
             }
-            $img_path = XOOPS_ROOT_PATH . "/modules/TDMLinks/language/" . $language . "/";
-            $img_url = XOOPS_URL . "/modules/TDMLinks/language/" . $language . "/";
-            if($status==1) {
-                if ( is_readable( $img_path . 'new.png') ){
+            $img_path = XOOPS_ROOT_PATH . "/modules/tdmlinks/language/" . $language . "/";
+            $img_url  = XOOPS_URL . "/modules/tdmlinks/language/" . $language . "/";
+            if ($status == 1) {
+                if (is_readable($img_path . 'new.png')) {
                     $new = '&nbsp;<img src="' . $img_url . 'new.png" alt="' . _MD_TDMLINKS_INDEX_NEWTHISWEEK . '" title="' . _MD_TDMLINKS_INDEX_NEWTHISWEEK . '"/>';
-                }else{
-                    $new = '&nbsp;<img src="' . XOOPS_URL . '/modules/TDMLinks/language/english/new.png" alt="' . _MD_TDMLINKS_INDEX_NEWTHISWEEK . '" title="' . _MD_TDMLINKS_INDEX_NEWTHISWEEK . '"/>';
+                } else {
+                    $new = '&nbsp;<img src="' . XOOPS_URL . '/modules/tdmlinks/language/english/new.png" alt="' . _MD_TDMLINKS_INDEX_NEWTHISWEEK . '" title="' . _MD_TDMLINKS_INDEX_NEWTHISWEEK . '"/>';
                 }
-            }elseif($status==2) {
-                if ( is_readable( $img_path . 'updated.png') ){                    
+            } elseif ($status == 2) {
+                if (is_readable($img_path . 'updated.png')) {
                     $new = '&nbsp;<img src="' . $img_url . 'updated.png" alt="' . _MD_TDMLINKS_INDEX_UPTHISWEEK . '" title="' . _MD_TDMLINKS_INDEX_UPTHISWEEK . '"/>';
-                }else{
-                    $new = '&nbsp;<img src="' . XOOPS_URL . '/modules/TDMLinks/language/english/updated.png" alt="' . _MD_TDMLINKS_INDEX_UPTHISWEEK . '" title="' . _MD_TDMLINKS_INDEX_UPTHISWEEK . '"/>';
+                } else {
+                    $new = '&nbsp;<img src="' . XOOPS_URL . '/modules/tdmlinks/language/english/updated.png" alt="' . _MD_TDMLINKS_INDEX_UPTHISWEEK . '" title="' . _MD_TDMLINKS_INDEX_UPTHISWEEK . '"/>';
                 }
-                
             }
         }
     }
+
     return $new;
 }
 
 /**
-* retourne une image "populaire"
-**/
+ * retourne une image "populaire"
+ **/
 
-function TDMLinks_Popular($hits) {
+function TDMLinks_Popular($hits)
+{
     global $xoopsModuleConfig;
     $pop = '';
     if ($hits >= $xoopsModuleConfig['popular']) {
         $language = $GLOBALS['xoopsConfig']['language'];
-        if ( !is_dir( XOOPS_ROOT_PATH . "/modules/TDMLinks/language/" . $language . "/" ) ){
+        if (!is_dir(XOOPS_ROOT_PATH . "/modules/tdmlinks/language/" . $language . "/")) {
             $language = 'english';
         }
-        $img_path = XOOPS_ROOT_PATH . "/modules/TDMLinks/language/" . $language . "/";
-        $img_url = XOOPS_URL . "/modules/TDMLinks/language/" . $language . "/";
-        if ( is_readable( $img_path . 'popular.png') ){
+        $img_path = XOOPS_ROOT_PATH . "/modules/tdmlinks/language/" . $language . "/";
+        $img_url  = XOOPS_URL . "/modules/tdmlinks/language/" . $language . "/";
+        if (is_readable($img_path . 'popular.png')) {
             $pop = '&nbsp;<img src="' . $img_url . 'popular.png" alt="' . _MD_TDMLINKS_INDEX_POPULAR . '" title="' . _MD_TDMLINKS_INDEX_POPULAR . '"/>';
-        }else{
-            $pop = '&nbsp;<img src ="' . XOOPS_URL . '/modules/TDMLinks/language/english/popular.png" alt="' . _MD_TDMLINKS_INDEX_POPULAR . '" title="' . _MD_TDMLINKS_INDEX_POPULAR . '"/>';
+        } else {
+            $pop = '&nbsp;<img src ="' . XOOPS_URL . '/modules/tdmlinks/language/english/popular.png" alt="' . _MD_TDMLINKS_INDEX_POPULAR . '" title="' . _MD_TDMLINKS_INDEX_POPULAR . '"/>';
         }
     }
+
     return $pop;
 }
 
-function trans_size($size) {
-    if($size>0) {
-        $mb = 1024*1024;
-        if ( $size > $mb ) {
-            $mysize = sprintf ("%01.2f",$size/$mb) . " MB";
+function trans_size($size)
+{
+    if ($size > 0) {
+        $mb = 1024 * 1024;
+        if ($size > $mb) {
+            $mysize = sprintf("%01.2f", $size / $mb) . " MB";
+        } elseif ($size >= 1024) {
+            $mysize = sprintf("%01.2f", $size / 1024) . " KB";
+        } else {
+            $mysize = sprintf(_AM_TDMLINKS_NUMBYTES, $size);
         }
-        elseif ( $size >= 1024 ) {
-            $mysize = sprintf ("%01.2f",$size/1024) . " KB";
-        }
-        else {
-            $mysize = sprintf(_AM_TDMLINKS_NUMBYTES,$size);
-        }
+
         return $mysize;
     } else {
         return '';
     }
 }
 
-function TDMLinks_CleanVars( &$global, $key, $default = '', $type = 'int' ) {
-    switch ( $type ) {
+function TDMLinks_CleanVars(&$global, $key, $default = '', $type = 'int')
+{
+    switch ($type) {
         case 'string':
-            $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_MAGIC_QUOTES ) : $default;
+            $ret = (isset($global[$key])) ? filter_var($global[$key], FILTER_SANITIZE_MAGIC_QUOTES) : $default;
             break;
-        case 'int': default:
-            $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_NUMBER_INT ) : $default;
+        case 'int':
+        default:
+            $ret = (isset($global[$key])) ? filter_var($global[$key], FILTER_SANITIZE_NUMBER_INT) : $default;
             break;
     }
-    if ( $ret === false ) {
+    if ($ret === false) {
         return $default;
     }
+
     return $ret;
 }
 
-function TDMLinks_PathTree($mytree, $key, $category_array, $title, $prefix = '' )
+function TDMLinks_PathTree($mytree, $key, $category_array, $title, $prefix = '')
 {
     $category_parent = $mytree->getAllParent($key);
     $category_parent = array_reverse($category_parent);
-    $Path = '';
+    $Path            = '';
     foreach (array_keys($category_parent) as $j) {
         $Path .= $category_parent[$j]->getVar($title) . $prefix;
     }
-    if (array_key_exists($key, $category_array)){
+    if (array_key_exists($key, $category_array)) {
         $first_category = $category_array[$key]->getVar($title);
-    }else{
+    } else {
         $first_category = '';
     }
     $Path .= $first_category;
+
     return $Path;
 }
 
@@ -183,17 +193,17 @@ function TDMLinks_PathTreeUrl($mytree, $key, $category_array, $title, $prefix = 
 {
     global $xoopsModule;
     $category_parent = $mytree->getAllParent($key);
-    if ($order == 'ASC'){
+    if ($order == 'ASC') {
         $category_parent = array_reverse($category_parent);
         if ($link == true) {
             $Path = '<a href="index.php">' . $xoopsModule->name() . '</a>' . $prefix;
-        }else{
+        } else {
             $Path = $xoopsModule->name() . $prefix;
         }
-    }else{
-        if (array_key_exists($key, $category_array)){
+    } else {
+        if (array_key_exists($key, $category_array)) {
             $first_category = $category_array[$key]->getVar($title);
-        }else{
+        } else {
             $first_category = '';
         }
         $Path = $first_category . $prefix;
@@ -201,28 +211,28 @@ function TDMLinks_PathTreeUrl($mytree, $key, $category_array, $title, $prefix = 
     foreach (array_keys($category_parent) as $j) {
         if ($link == true) {
             $Path .= '<a href="viewcat.php?cid=' . $category_parent[$j]->getVar('cat_cid') . '">' . $category_parent[$j]->getVar($title) . '</a>' . $prefix;
-        }else{
+        } else {
             $Path .= $category_parent[$j]->getVar($title) . $prefix;
         }
     }
-    if ($order == 'ASC'){
-        if (array_key_exists($key, $category_array)){
-            if ($lasturl == true){
+    if ($order == 'ASC') {
+        if (array_key_exists($key, $category_array)) {
+            if ($lasturl == true) {
                 $first_category = '<a href="viewcat.php?cid=' . $category_array[$key]->getVar('cat_cid') . '">' . $category_array[$key]->getVar($title) . '</a>';
-            }else{
+            } else {
                 $first_category = $category_array[$key]->getVar($title);
             }
-        }else{
+        } else {
             $first_category = '';
         }
         $Path .= $first_category;
-    }else{
+    } else {
         if ($link == true) {
             $Path .= '<a href="index.php">' . $xoopsModule->name() . '</a>';
-        }else{
+        } else {
             $Path .= $xoopsModule->name();
         }
     }
+
     return $Path;
 }
-?>

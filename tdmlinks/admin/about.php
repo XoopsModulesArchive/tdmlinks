@@ -16,11 +16,10 @@
 
 include 'admin_header.php';
 xoops_cp_header();
-if (TDMLinks_checkModuleAdmin()){
+if (TDMLinks_checkModuleAdmin()) {
     $about_admin = new ModuleAdmin();
-    
+
     echo $about_admin->addNavigation('about.php');
     echo $about_admin->renderabout('9MYQB7GUK5MCS', true);
 }
 xoops_cp_footer();
-?>

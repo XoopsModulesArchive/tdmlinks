@@ -153,4 +153,3 @@ define('_AM_TDMLINKS_NOPERMSSET', "Permission cannot be set: No Category created
 define('_AM_TDMLINKS_PRICE', 'Price');
 define('_AM_TDMLINKS_CURRENCY', 'ISO Code for Currency');
 define('_AM_TDMLINKS_CATELOGUENUMBER', 'Catelogue Number (required)');
-?>
