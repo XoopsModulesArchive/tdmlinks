@@ -20,23 +20,25 @@ if (!defined("XOOPS_ROOT_PATH")) {
 
 class tdmlinks_broken extends XoopsObject
 {
-// constructor
-    function __construct()
+    // constructor
+    public function __construct()
     {
         $this->XoopsObject();
-        $this->initVar("reportid",XOBJ_DTYPE_INT,null,false,5);
-        $this->initVar("lid",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("sender",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("ip",XOBJ_DTYPE_TXTBOX,null,false);
+        $this->initVar("reportid", XOBJ_DTYPE_INT, null, false, 5);
+        $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("sender", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("ip", XOBJ_DTYPE_TXTBOX, null, false);
         //pour les jointures:
-        $this->initVar("title",XOBJ_DTYPE_TXTBOX, null, false);
-        $this->initVar("cid",XOBJ_DTYPE_INT,null,false,5);
+        $this->initVar("title", XOBJ_DTYPE_TXTBOX, null, false);
+        $this->initVar("cid", XOBJ_DTYPE_INT, null, false, 5);
     }
-    function tdmlinks_broken()
+
+    public function tdmlinks_broken()
     {
         $this->__construct();
     }
-    function getForm($lid, $action = false)
+
+    public function getForm($lid, $action = false)
     {
         global $xoopsDB, $xoopsModule, $xoopsModuleConfig;
         if ($action === false) {
@@ -49,18 +51,18 @@ class tdmlinks_broken extends XoopsObject
         $form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormHidden('lid', $lid));
         // Submit button
-        $button_tray = new XoopsFormElementTray(_MD_TDMLINKS_BROKENLINK_REPORTBROKEN, '' ,'');
+        $button_tray = new XoopsFormElementTray(_MD_TDMLINKS_BROKENLINK_REPORTBROKEN, '', '');
         $button_tray->addElement(new XoopsFormButton('', 'post', _MD_TDMLINKS_BROKENLINK_REPORTBROKEN, 'submit'));
         $form->addElement($button_tray);
+
         return $form;
     }
 }
 
 class tdmlinkstdmlinks_brokenHandler extends XoopsPersistableObjectHandler
 {
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, "tdmlinks_broken", 'tdmlinks_broken', 'reportid', 'lid');
     }
 }
-?>

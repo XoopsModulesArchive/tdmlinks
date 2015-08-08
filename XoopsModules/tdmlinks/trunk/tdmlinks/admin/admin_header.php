@@ -14,26 +14,29 @@
  * @author      Gregory Mage (Aka Mage)
  */
 
+$moduleDirName = basename(dirname(__DIR__));
+
 // Include xoops admin header
-include_once '../../../include/cp_header.php';
+include_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+include_once $GLOBALS['xoops']->path('www/include/cp_header.php');
 
-include_once(XOOPS_ROOT_PATH."/class/xoopsmodule.php");
-include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-include_once XOOPS_ROOT_PATH."/class/tree.php";
-include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
-include_once XOOPS_ROOT_PATH.'/class/pagenav.php';
-include_once XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
+include_once(XOOPS_ROOT_PATH . '/kernel/module.php');
+include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+include_once XOOPS_ROOT_PATH . '/class/tree.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
+include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 
-include_once("../include/functions.php");
+include_once('../include/functions.php');
 
-if ( $xoopsUser ) {
-    $xoopsModule = XoopsModule::getByDirname("TDMLinks");
-    if ( !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
-        redirect_header(XOOPS_URL."/",3,_NOPERM);
+if ($xoopsUser) {
+    $xoopsModule = XoopsModule::getByDirname($moduleDirName);
+    if (!$xoopsUser->isAdmin($xoopsModule->mid())) {
+        redirect_header(XOOPS_URL . '/', 3, _NOPERM);
         exit();
     }
 } else {
-    redirect_header(XOOPS_URL."/",3,_NOPERM);
+    redirect_header(XOOPS_URL . '/', 3, _NOPERM);
     exit();
 }
 
@@ -42,28 +45,27 @@ xoops_loadLanguage('admin', 'system');
 xoops_loadLanguage('admin', $xoopsModule->getVar('dirname', 'e'));
 xoops_loadLanguage('modinfo', $xoopsModule->getVar('dirname', 'e'));
 
-//paramètres:
-// pour les images des catégories:
-$uploaddir = XOOPS_ROOT_PATH . '/uploads/TDMLinks/images/cats/';
-$uploadurl = XOOPS_URL . '/uploads/TDMLinks/images/cats/';
-// pour les fichiers
-$uploaddir_links = XOOPS_ROOT_PATH . '/uploads/TDMLinks/links/';
-$uploadurl_links = XOOPS_URL . '/uploads/TDMLinks/links/';
-// pour les captures d'écran fichiers
-$uploaddir_shots = XOOPS_ROOT_PATH . '/uploads/TDMLinks/images/shots/';
-$uploadurl_shots = XOOPS_URL . '/uploads/TDMLinks/images/shots/';
-// pour les images des champs:
-$uploaddir_field = XOOPS_ROOT_PATH . '/uploads/TDMLinks/images/field/';
-$uploadurl_field = XOOPS_URL . '/uploads/TDMLinks/images/field/';
+//parameters:
+// for images of categories:
+$uploaddir = XOOPS_ROOT_PATH . '/uploads/tdmlinks/images/cats/';
+$uploadurl = XOOPS_URL . '/uploads/tdmlinks/images/cats/';
+// for links
+$uploaddir_links = XOOPS_ROOT_PATH . '/uploads/tdmlinks/links/';
+$uploadurl_links = XOOPS_URL . '/uploads/tdmlinks/links/';
+// for screenshots
+$uploaddir_shots = XOOPS_ROOT_PATH . '/uploads/tdmlinks/images/shots/';
+$uploadurl_shots = XOOPS_URL . '/uploads/tdmlinks/images/shots/';
+// for field images:
+$uploaddir_field = XOOPS_ROOT_PATH . '/uploads/tdmlinks/images/field/';
+$uploadurl_field = XOOPS_URL . '/uploads/tdmlinks/images/field/';
 /////////////
 
-//appel des class
-$linkscat_Handler =& xoops_getModuleHandler('tdmlinks_cat', 'TDMLinks');
-$links_Handler =& xoops_getModuleHandler('tdmlinks_links', 'TDMLinks');
-$linksvotedata_Handler =& xoops_getModuleHandler('tdmlinks_votedata', 'TDMLinks');
-$linksfield_Handler =& xoops_getModuleHandler('tdmlinks_field', 'TDMLinks');
-$linksfielddata_Handler =& xoops_getModuleHandler('tdmlinks_fielddata', 'TDMLinks');
-$linksbroken_Handler =& xoops_getModuleHandler('tdmlinks_broken', 'TDMLinks');
-$linksmod_Handler =& xoops_getModuleHandler('tdmlinks_mod', 'TDMLinks');
-$linksfieldmoddata_Handler =& xoops_getModuleHandler('tdmlinks_modfielddata', 'TDMLinks');
-?>
+//class handlers
+$linkscat_Handler          =& xoops_getModuleHandler('tdmlinks_cat', $moduleDirName);
+$links_Handler             =& xoops_getModuleHandler('tdmlinks_links', $moduleDirName);
+$linksvotedata_Handler     =& xoops_getModuleHandler('tdmlinks_votedata', $moduleDirName);
+$linksfield_Handler        =& xoops_getModuleHandler('tdmlinks_field', $moduleDirName);
+$linksfielddata_Handler    =& xoops_getModuleHandler('tdmlinks_fielddata', $moduleDirName);
+$linksbroken_Handler       =& xoops_getModuleHandler('tdmlinks_broken', $moduleDirName);
+$linksmod_Handler          =& xoops_getModuleHandler('tdmlinks_mod', $moduleDirName);
+$linksfieldmoddata_Handler =& xoops_getModuleHandler('tdmlinks_modfielddata', $moduleDirName);

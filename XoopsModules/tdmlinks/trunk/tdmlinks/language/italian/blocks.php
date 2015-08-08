@@ -16,21 +16,20 @@
  * @author      Gregory Mage (Aka Mage)
  */
 
-define("_MB_TDMLINKS_ALLCAT", "Tutte le categorie");
-define("_MB_TDMLINKS_CATTODISPLAY", "Seleziona visualizzate le categorie");
-define("_MB_TDMLINKS_CHARS", "Titolo Lunghezza");
-define("_MB_TDMLINKS_DESCRIPTION", "Usa descrizione?");
-define("_MB_TDMLINKS_DISP", "Display");
-define("_MB_TDMLINKS_FILES", "Files");
-define("_MB_TDMLINKS_LENGTH", "Personaggi");
-define("_MB_TDMLINKS_LOGO", "Utilizzare il logo?");
-define("_MB_TDMLINKS_SUBMITDATE", "Data di invio");
-define("_MB_TDMLINKS_SUBMITTER", "Inserito da:");
-define("_MB_TDMLINKS_INFORMATIONS", "Informazioni?");
-define("_MB_TDMLINKS_REATING", "Reat:");
-define("_MB_TDMLINKS_HITS", "Hits:");
-define("_MB_TDMLINKS_FLOAT", "Immagine galleggiante:");
-define("_MB_TDMLINKS_FLOAT_LEFT", "Sinistra");
-define("_MB_TDMLINKS_FLOAT_RIGHT", "Diritto");
-define("_MB_TDMLINKS_WHITE", "Immagine in bianco");
-?>
+define('_MB_TDMLINKS_ALLCAT', "Tutte le categorie");
+define('_MB_TDMLINKS_CATTODISPLAY', "Seleziona visualizzate le categorie");
+define('_MB_TDMLINKS_CHARS', "Titolo Lunghezza");
+define('_MB_TDMLINKS_DESCRIPTION', "Usa descrizione?");
+define('_MB_TDMLINKS_DISP', "Display");
+define('_MB_TDMLINKS_FILES', "Files");
+define('_MB_TDMLINKS_LENGTH', "Personaggi");
+define('_MB_TDMLINKS_LOGO', "Utilizzare il logo?");
+define('_MB_TDMLINKS_SUBMITDATE', "Data di invio");
+define('_MB_TDMLINKS_SUBMITTER', "Inserito da:");
+define('_MB_TDMLINKS_INFORMATIONS', "Informazioni?");
+define('_MB_TDMLINKS_REATING', "Reat:");
+define('_MB_TDMLINKS_HITS', "Hits:");
+define('_MB_TDMLINKS_FLOAT', "Immagine galleggiante:");
+define('_MB_TDMLINKS_FLOAT_LEFT', "Sinistra");
+define('_MB_TDMLINKS_FLOAT_RIGHT', "Diritto");
+define('_MB_TDMLINKS_WHITE', "Immagine in bianco");

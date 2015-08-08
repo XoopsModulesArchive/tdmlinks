@@ -25,14 +25,11 @@ function tdmlinks_new($limit=0, $offset=0)
 
     $result = $xoopsDB->query($sql, $limit, $offset);
 
-
-
     $i = 0;
     $ret = array();
 
-     while( $row = $xoopsDB->fetchArray($result) )
-     {
-         $lid = $row['lid'];
+    while ($row = $xoopsDB->fetchArray($result)) {
+        $lid = $row['lid'];
         $ret[$i]['link']     = $URL_MOD."/singlefile.php?lid=".$lid;
         $ret[$i]['cat_link'] = $URL_MOD."/viewcat.php?cid=".$row['cid'];
 
@@ -41,7 +38,7 @@ function tdmlinks_new($limit=0, $offset=0)
 
 // atom feed
         $ret[$i]['id'] = $lid;
-        $ret[$i]['description'] = $myts->makeTareaData4Show( $row['description'], 0 );    //no html
+        $ret[$i]['description'] = $myts->makeTareaData4Show($row['description'], 0);    //no html
 
 // category
         //$ret[$i]['cat_name'] = $row['ctitle'];
@@ -63,9 +60,11 @@ function tdmlinks_num()
     global $xoopsDB;
 
     $sql = "SELECT count(*) FROM ".$xoopsDB->prefix("tdmlinks_LINKS")." WHERE status>0 ORDER BY lid";
-    $array = $xoopsDB->fetchRow( $xoopsDB->query($sql) );
+    $array = $xoopsDB->fetchRow($xoopsDB->query($sql));
     $num   = $array[0];
-    if (empty($num)) $num = 0;
+    if (empty($num)) {
+        $num = 0;
+    }
 
     return $num;
 }
@@ -75,13 +74,12 @@ function tdmlinks_data($limit=0, $offset=0)
     global $xoopsDB;
 
     $sql = "SELECT lid, title, date FROM ".$xoopsDB->prefix("tdmlinks_LINKS")." WHERE status>0 ORDER BY lid";
-    $result = $xoopsDB->query($sql,$limit,$offset);
+    $result = $xoopsDB->query($sql, $limit, $offset);
 
     $i = 0;
     $ret = array();
 
-     while($myrow = $xoopsDB->fetchArray($result))
-     {
+    while ($myrow = $xoopsDB->fetchArray($result)) {
         $id = $myrow['lid'];
         $ret[$i]['id']   = $id;
         $ret[$i]['link'] = XOOPS_URL."/modules/tdmlinks/singlefile.php?lid=".$id."";
@@ -92,4 +90,3 @@ function tdmlinks_data($limit=0, $offset=0)
 
     return $ret;
 }
-?>

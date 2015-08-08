@@ -16,14 +16,14 @@
 
 include_once 'header.php';
 // SAR - 19/08/2011
-$cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
-$url = XOOPS_URL.'/'.$GLOBALS['xoopsModuleConfig']['baseurl'].'/rss,'.$cid.$GLOBALS['xoopsModuleConfig']['endofurl_rss'];
-if (!strpos($url, $_SERVER['REQUEST_URI'])&&$GLOBALS['xoopsModuleConfig']['htaccess']==true&&empty($_POST)) {
-	header( "HTTP/1.1 301 Moved Permanently" ); 
-	header('Location: '.$url);
-	exit(0);
+$cid = isset($_GET['cid']) ? (int)($_GET['cid']) : 0;
+$url = XOOPS_URL . '/' . $GLOBALS['xoopsModuleConfig']['baseurl'] . '/rss,' . $cid . $GLOBALS['xoopsModuleConfig']['endofurl_rss'];
+if (!strpos($url, $_SERVER['REQUEST_URI']) && $GLOBALS['xoopsModuleConfig']['htaccess'] == true && empty($_POST)) {
+    header("HTTP/1.1 301 Moved Permanently");
+    header('Location: ' . $url);
+    exit(0);
 }
-include_once XOOPS_ROOT_PATH.'/class/template.php';
+include_once XOOPS_ROOT_PATH . '/class/template.php';
 $items_count = $xoopsModuleConfig['perpagerss'];
 
 if (function_exists('mb_http_output')) {
@@ -34,16 +34,16 @@ $xoopsModuleConfig["utf8"] = false;
 
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2); //1 = Cache global, 2 = Cache individuel (par template)
-$tpl->xoops_setCacheTime($xoopsModuleConfig['timecacherss']*60); // Temps de cache en secondes
+$tpl->xoops_setCacheTime($xoopsModuleConfig['timecacherss'] * 60); // Temps de cache en secondes
 $categories = TDMLinks_MygetItemIds('tdmlinks_view', 'tdmlinks');
-$criteria = new CriteriaCompo();
+$criteria   = new CriteriaCompo();
 $criteria->add(new Criteria('status', 0, '!='));
-$criteria->add(new Criteria('cid', '(' . implode(',', $categories) . ')','IN'));
-if ($cid != 0){
+$criteria->add(new Criteria('cid', '(' . implode(',', $categories) . ')', 'IN'));
+if ($cid != 0) {
     $criteria->add(new Criteria('cid', $cid));
-    $cat = $linkscat_Handler->get($cid);
+    $cat   = $linkscat_Handler->get($cid);
     $title = $xoopsConfig['sitename'] . ' - ' . $xoopsModule->getVar('name') . ' - ' . $cat->getVar('cat_title');
-}else{
+} else {
     $title = $xoopsConfig['sitename'] . ' - ' . $xoopsModule->getVar('name');
 }
 $criteria->setLimit($xoopsModuleConfig['perpagerss']);
@@ -51,9 +51,9 @@ $criteria->setSort('date');
 $criteria->setOrder('DESC');
 $links_arr = $links_Handler->getall($criteria);
 
-if (!$tpl->is_cached('db:tdmlinks_rss.html', $cid)) {
+if (!$tpl->is_cached('db:tdmlinks_rss.tpl', $cid)) {
     $tpl->assign('channel_title', htmlspecialchars($title, ENT_QUOTES));
-    $tpl->assign('channel_link', XOOPS_URL.'/');
+    $tpl->assign('channel_link', XOOPS_URL . '/');
     $tpl->assign('channel_desc', htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES));
     $tpl->assign('channel_lastbuild', formatTimestamp(time(), 'rss'));
     $tpl->assign('channel_webmaster', $xoopsConfig['adminmail']);
@@ -61,7 +61,7 @@ if (!$tpl->is_cached('db:tdmlinks_rss.html', $cid)) {
     $tpl->assign('channel_category', 'Event');
     $tpl->assign('channel_generator', 'XOOPS - ' . htmlspecialchars($xoopsModule->getVar('name'), ENT_QUOTES));
     $tpl->assign('channel_language', _LANGCODE);
-    if ( _LANGCODE == 'fr' ) {
+    if (_LANGCODE == 'fr') {
         $tpl->assign('docs', 'http://www.scriptol.fr/rss/RSS-2.0.html');
     } else {
         $tpl->assign('docs', 'http://cyber.law.harvard.edu/rss/rss.html');
@@ -83,18 +83,19 @@ if (!$tpl->is_cached('db:tdmlinks_rss.html', $cid)) {
     foreach (array_keys($links_arr) as $i) {
         $description = $links_arr[$i]->getVar('description');
         //permet d'afficher uniquement la description courte
-        if (strpos($description,'[pagebreak]')==false){
+        if (strpos($description, '[pagebreak]') == false) {
             $description_short = $description;
-        }else{
-            $description_short = substr($description,0,strpos($description,'[pagebreak]'));
+        } else {
+            $description_short = substr($description, 0, strpos($description, '[pagebreak]'));
         }
-        $tpl->append('items', array('title' => htmlspecialchars($links_arr[$i]->getVar('title'), ENT_QUOTES),
-                                    'link' => XOOPS_URL . '/modules/TDMLinks/singlelink.php?cid=' . $links_arr[$i]->getVar('cid') . '&amp;lid=' . $links_arr[$i]->getVar('lid'),
-                                    'guid' => XOOPS_URL . '/modules/TDMLinks/singlelink.php?cid=' . $links_arr[$i]->getVar('cid') . '&amp;lid=' . $links_arr[$i]->getVar('lid'),
-                                    'pubdate' => formatTimestamp($links_arr[$i]->getVar('date'), 'rss'),
-                                    'description' => htmlspecialchars($description_short, ENT_QUOTES)));
+        $tpl->append('items', array(
+            'title'       => htmlspecialchars($links_arr[$i]->getVar('title'), ENT_QUOTES),
+            'link'        => XOOPS_URL . '/modules/tdmlinks/singlelink.php?cid=' . $links_arr[$i]->getVar('cid') . '&amp;lid=' . $links_arr[$i]->getVar('lid'),
+            'guid'        => XOOPS_URL . '/modules/tdmlinks/singlelink.php?cid=' . $links_arr[$i]->getVar('cid') . '&amp;lid=' . $links_arr[$i]->getVar('lid'),
+            'pubdate'     => formatTimestamp($links_arr[$i]->getVar('date'), 'rss'),
+            'description' => htmlspecialchars($description_short, ENT_QUOTES)
+        ));
     }
 }
 header("Content-Type:text/xml; charset=" . _CHARSET);
-$tpl->display('db:tdmlinks_rss.html', $cid);
-?>
+$tpl->display('db:tdmlinks_rss.tpl', $cid);

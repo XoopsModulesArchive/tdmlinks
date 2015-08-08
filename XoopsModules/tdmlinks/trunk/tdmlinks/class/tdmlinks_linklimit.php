@@ -20,17 +20,18 @@ if (!defined("XOOPS_ROOT_PATH")) {
 
 class tdmlinks_linklimit extends XoopsObject
 {
-// constructor
-    function __construct()
+    // constructor
+    public function __construct()
     {
         $this->XoopsObject();
-        $this->initVar("linklimit_id",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("linklimit_lid",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("linklimit_uid",XOBJ_DTYPE_INT,null,false,11);
-        $this->initVar("linklimit_hostname",XOBJ_DTYPE_TXTBOX, null, false);
-        $this->initVar("linklimit_date",XOBJ_DTYPE_INT,null,false,10);
+        $this->initVar("linklimit_id", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("linklimit_lid", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("linklimit_uid", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("linklimit_hostname", XOBJ_DTYPE_TXTBOX, null, false);
+        $this->initVar("linklimit_date", XOBJ_DTYPE_INT, null, false, 10);
     }
-    function tdmlinks_linklimit()
+
+    public function tdmlinks_linklimit()
     {
         $this->__construct();
     }
@@ -38,9 +39,8 @@ class tdmlinks_linklimit extends XoopsObject
 
 class tdmlinkstdmlinks_linklimitHandler extends XoopsPersistableObjectHandler
 {
-    function __construct(&$db)
+    public function __construct(&$db)
     {
         parent::__construct($db, "tdmlinks_linklimit", 'tdmlinks_linklimit', 'linklimit_id', 'linklimit_lid');
     }
 }
-?>

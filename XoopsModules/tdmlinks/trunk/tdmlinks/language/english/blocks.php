@@ -14,12 +14,20 @@
  * @author      Gregory Mage (Aka Mage)
  */
 
-define("_MB_TDMLINKS_ALLCAT","All Categories");
-define("_MB_TDMLINKS_CATTODISPLAY","Select Displayed Categories");
-define("_MB_TDMLINKS_CHARS","Title Lenght");
-define("_MB_TDMLINKS_DESCRIPTION","Use description?");
-define("_MB_TDMLINKS_DISP","Display");
-define("_MB_TDMLINKS_FILES","Files");
-define("_MB_TDMLINKS_LENGTH","Characters");
-define("_MB_TDMLINKS_LOGO","Use logo?");define("_MB_TDMLINKS_SUBMITDATE","Submitted Date ");define("_MB_TDMLINKS_SUBMITTER","Submitted by: ");define("_MB_TDMLINKS_INFORMATIONS","Information?");define("_MB_TDMLINKS_REATING","Reat: ");define("_MB_TDMLINKS_HITS","Hits: ");define("_MB_TDMLINKS_FLOAT","Image float: ");define("_MB_TDMLINKS_FLOAT_LEFT","Left");define("_MB_TDMLINKS_FLOAT_RIGHT","Right");define("_MB_TDMLINKS_WHITE","Image white");
-?>
+define('_MB_TDMLINKS_ALLCAT', "All Categories");
+define('_MB_TDMLINKS_CATTODISPLAY', "Select Displayed Categories");
+define('_MB_TDMLINKS_CHARS', "Title Lenght");
+define('_MB_TDMLINKS_DESCRIPTION', "Use description?");
+define('_MB_TDMLINKS_DISP', "Display");
+define('_MB_TDMLINKS_FILES', "Files");
+define('_MB_TDMLINKS_LENGTH', "Characters");
+define('_MB_TDMLINKS_LOGO', "Use logo?");
+define('_MB_TDMLINKS_SUBMITDATE', "Submitted Date ");
+define('_MB_TDMLINKS_SUBMITTER', "Submitted by: ");
+define('_MB_TDMLINKS_INFORMATIONS', "Information?");
+define('_MB_TDMLINKS_REATING', "Reat: ");
+define('_MB_TDMLINKS_HITS', "Hits: ");
+define('_MB_TDMLINKS_FLOAT', "Image float: ");
+define('_MB_TDMLINKS_FLOAT_LEFT', "Left");
+define('_MB_TDMLINKS_FLOAT_RIGHT', "Right");
+define('_MB_TDMLINKS_WHITE', "Image white");

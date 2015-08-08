@@ -28,12 +28,12 @@
 function tdmlinks_notify_iteminfo($category, $item_id)
 {
     global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
-    $item_id = intval($item_id);
-    if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != 'TDMLinks') {
+    $item_id = (int)($item_id);
+    if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != 'tdmlinks') {
         $module_handler =& xoops_gethandler('module');
         $module =& $module_handler->getByDirname('tdmlinks');
         $config_handler =& xoops_gethandler('config');
-        $config =& $config_handler->getConfigsByCat(0,$module->getVar('mid'));
+        $config =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
     } else {
         $module =& $xoopsModule;
         $config =& $xoopsModuleConfig;
@@ -42,6 +42,7 @@ function tdmlinks_notify_iteminfo($category, $item_id)
     if ($category == 'global') {
         $item['name'] = '';
         $item['url'] = '';
+
         return $item;
     }
 
@@ -53,6 +54,7 @@ function tdmlinks_notify_iteminfo($category, $item_id)
         $result_array = $xoopsDB->fetchArray($result);
         $item['name'] = $result_array['title'];
         $item['url'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/viewcat.php?cid=' . $item_id;
+
         return $item;
     }
 
@@ -63,7 +65,7 @@ function tdmlinks_notify_iteminfo($category, $item_id)
         $result_array = $xoopsDB->fetchArray($result);
         $item['name'] = $result_array['title'];
         $item['url'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/singlefile.php?cid=' . $result_array['cid'] . '&amp;lid=' . $item_id;
+
         return $item;
     }
 }
-?>
