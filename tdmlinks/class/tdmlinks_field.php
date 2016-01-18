@@ -23,7 +23,7 @@ class tdmlinks_field extends XoopsObject
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar("fid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("title", XOBJ_DTYPE_TXTBOX, null, false);
         $this->initVar("img", XOBJ_DTYPE_TXTBOX, null, false);

@@ -23,7 +23,7 @@ class tdmlinks_fielddata extends XoopsObject
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar("iddata", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("fid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);

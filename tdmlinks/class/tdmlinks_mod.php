@@ -23,7 +23,7 @@ class tdmlinks_mod extends XoopsObject
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar("requestid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("cid", XOBJ_DTYPE_INT, null, false, 5);

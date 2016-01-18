@@ -23,7 +23,7 @@ class tdmlinks_purchase extends XoopsObject
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar("purchaseid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("mode", XOBJ_DTYPE_ENUM, 'unpaid', false, false, false, array('unpaid', 'paid', 'cancelled'));
         $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);
