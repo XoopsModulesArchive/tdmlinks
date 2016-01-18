@@ -18,29 +18,33 @@ if (!defined("XOOPS_ROOT_PATH")) {
     die("XOOPS root path not defined");
 }
 
-class tdmlinks_modfielddata extends XoopsObject
+class tdmlinks_purchase extends XoopsObject
 {
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
-        $this->initVar("modiddata", XOBJ_DTYPE_INT, null, false, 11);
-        $this->initVar("fid", XOBJ_DTYPE_INT, null, false, 11);
+        parent::__construct();
+        $this->initVar("purchaseid", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("mode", XOBJ_DTYPE_ENUM, 'unpaid', false, false, false, array('unpaid', 'paid', 'cancelled'));
         $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);
-        $this->initVar("moddata", XOBJ_DTYPE_TXTAREA, null, false);
-        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar("purchaseuid", XOBJ_DTYPE_INT, 0, false);
+        $this->initVar("purchaselinks", XOBJ_DTYPE_INT, 0, false);
+        $this->initVar("purchaseip", XOBJ_DTYPE_TXTBOX, null, false, 128);
+        $this->initVar("purchasehostname", XOBJ_DTYPE_TXTBOX, null, false, 500);
+        $this->initVar("purchaseinvoiced", XOBJ_DTYPE_INT, null, false);
+        $this->initVar("purchasepaid", XOBJ_DTYPE_INT, null, false);
     }
 
-    public function tdmlinks_modfielddata()
+    public function tdmlinks_purchase()
     {
         $this->__construct();
     }
 }
 
-class tdmlinkstdmlinks_modfielddataHandler extends XoopsPersistableObjectHandler
+class tdmlinks_purchaseHandler extends XoopsPersistableObjectHandler
 {
     public function __construct(&$db)
     {
-        parent::__construct($db, "tdmlinks_modfielddata", 'tdmlinks_modfielddata', 'modiddata', 'moddata');
+        parent::__construct($db, "tdmlinks_purchase", 'tdmlinks_purchase', 'purchaseid', 'lid');
     }
 }

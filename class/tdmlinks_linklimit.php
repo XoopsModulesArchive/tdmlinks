@@ -23,7 +23,7 @@ class tdmlinks_linklimit extends XoopsObject
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
+        parent::__construct();
         $this->initVar("linklimit_id", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("linklimit_lid", XOBJ_DTYPE_INT, null, false, 11);
         $this->initVar("linklimit_uid", XOBJ_DTYPE_INT, null, false, 11);

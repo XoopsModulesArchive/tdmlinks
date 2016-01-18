@@ -18,21 +18,22 @@ if (!defined("XOOPS_ROOT_PATH")) {
     die("XOOPS root path not defined");
 }
 
-class tdmlinks_votedata extends XoopsObject
+class tdmlinks_broken extends XoopsObject
 {
     // constructor
     public function __construct()
     {
-        $this->XoopsObject();
-        $this->initVar("ratingid", XOBJ_DTYPE_INT, null, false, 11);
+        parent::__construct();
+        $this->initVar("reportid", XOBJ_DTYPE_INT, null, false, 5);
         $this->initVar("lid", XOBJ_DTYPE_INT, null, false, 11);
-        $this->initVar("ratinguser", XOBJ_DTYPE_INT, null, false, 11);
-        $this->initVar("rating", XOBJ_DTYPE_OTHER, null, false, 3);
-        $this->initVar("ratinghostname", XOBJ_DTYPE_TXTBOX, null, false);
-        $this->initVar("ratingtimestamp", XOBJ_DTYPE_INT, null, false, 10);
+        $this->initVar("sender", XOBJ_DTYPE_INT, null, false, 11);
+        $this->initVar("ip", XOBJ_DTYPE_TXTBOX, null, false);
+        //pour les jointures:
+        $this->initVar("title", XOBJ_DTYPE_TXTBOX, null, false);
+        $this->initVar("cid", XOBJ_DTYPE_INT, null, false, 5);
     }
 
-    public function tdmlinks_votedata()
+    public function tdmlinks_broken()
     {
         $this->__construct();
     }
@@ -43,33 +44,25 @@ class tdmlinks_votedata extends XoopsObject
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        if (!$this->isNew()) {
-            $rating = 11;
-        } else {
-            $rating = $this->getVar('rating');
-        }
-        $form = new XoopsThemeForm(_MD_TDMLINKS_SINGLELINK_RATHLINK, 'rateform', 'ratelink.php', 'post');
+
+        $form = new XoopsThemeForm(_MD_TDMLINKS_BROKENLINK_REPORTBROKEN, 'brokenform', 'brokenlink.php', 'post');
         $form->setExtra('enctype="multipart/form-data"');
-        $rating  = new XoopsFormSelect(_MD_TDMLINKS_RATELINK_VOTE, 'rating', $rating);
-        $options = array('11' => '--', '10' => '10', '9' => '9', '8' => '8', '7' => '7', '6' => '6', '5' => '5', '4' => '4', '3' => '3', '2' => '2', '1' => '1', '0' => '0');
-        $rating->addOptionArray($options);
-        $form->addElement($rating, true);
         $form->addElement(new XoopsFormCaptcha(), true);
         $form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormHidden('lid', $lid));
         // Submit button
-        $button_tray = new XoopsFormElementTray('', '');
-        $button_tray->addElement(new XoopsFormButton('', 'post', _MD_TDMLINKS_RATELINK_RATE, 'submit'));
+        $button_tray = new XoopsFormElementTray(_MD_TDMLINKS_BROKENLINK_REPORTBROKEN, '', '');
+        $button_tray->addElement(new XoopsFormButton('', 'post', _MD_TDMLINKS_BROKENLINK_REPORTBROKEN, 'submit'));
         $form->addElement($button_tray);
 
         return $form;
     }
 }
 
-class tdmlinkstdmlinks_votedataHandler extends XoopsPersistableObjectHandler
+class tdmlinkstdmlinks_brokenHandler extends XoopsPersistableObjectHandler
 {
     public function __construct(&$db)
     {
-        parent::__construct($db, "tdmlinks_votedata", 'tdmlinks_votedata', 'ratingid', 'lid');
+        parent::__construct($db, "tdmlinks_broken", 'tdmlinks_broken', 'reportid', 'lid');
     }
 }
