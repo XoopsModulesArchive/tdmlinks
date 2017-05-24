@@ -16,7 +16,7 @@
 
 function xoops_module_update_tdmlinks()
 {
-    $db  =& Database::getInstance();
+    $db  = Database::getInstance();
     $sql = "ALTER TABLE `" . $db->prefix('tdmlinks_cat') . "` CHANGE `cid` `cat_cid` INT( 5 ) UNSIGNED NOT NULL AUTO_INCREMENT ;";
     $db->query($sql);
     $sql = "ALTER TABLE `" . $db->prefix('tdmlinks_cat') . "` CHANGE `pid` `cat_pid` INT( 5 ) UNSIGNED NOT NULL DEFAULT '0' ;";
