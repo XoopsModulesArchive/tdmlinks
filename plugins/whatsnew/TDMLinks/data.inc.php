@@ -18,7 +18,7 @@ function tdmlinks_new($limit=0, $offset=0)
 {
     global $xoopsDB;
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
 
     $URL_MOD = XOOPS_URL."/modules/tdmlinks";
     $sql = "SELECT lid, title, date, cid, submitter, hits, description FROM ".$xoopsDB->prefix("tdmlinks_LINKS")." WHERE status>0 ORDER BY date";
